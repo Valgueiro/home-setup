@@ -1,0 +1,18 @@
+# My home setup
+
+The idea of this repo is to be able to replicate my coding setup environment at any time using ansible.
+
+## Necessary steps after OS instalation:
+
+1. install ansible cli:
+```
+$ sudo apt install ansible
+```
+
+And you are good to go
+## Install packages:
+```sh
+$ ansible-playbook setup.yaml
+```
+
+PS: your vault pass is on bitwarden
