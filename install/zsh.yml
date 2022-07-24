@@ -1,0 +1,33 @@
+- name: Run ansible-role-oh-my-zsh.
+  include_role:
+    name: "ansible-role-oh-my-zsh"
+  vars:
+    omz_user: 
+      name: "{{ ansible_user_id }}"
+      group: "{{ ansible_user_id }}"
+      settings: ""
+    omz_install_zsh: true
+    omz_zshrc_create: true
+    omz_plugins:
+      - "git"
+      - "zsh-z"
+
+- name: Clone z repo
+  git:
+    repo: https://github.com/agkozak/zsh-z
+    dest: "{{ ansible_env.HOME + '/.oh-my-zsh/custom/plugins/zsh-z' }}"
+
+- name: installing addons
+  become: true
+  apt:
+    pkg:
+      - zsh-syntax-highlighting
+
+- name: "Add zsh-syntax-highlighting line if it does not exist"
+  become: yes
+  become_user: root
+  lineinfile:
+    path: /home/mvalgueiro/.zshrc
+    line: "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    state: present
+    backup: yes

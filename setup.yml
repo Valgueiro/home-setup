@@ -1,11 +1,15 @@
 - hosts: localhost
   tasks:
+    - name: install zsh
+      include_tasks: install/zsh.yml
+      tags: ["zsh"]
+
     - name: install cli packages
-      include_tasks: install/cli_packages.yaml
+      include_tasks: install/cli_packages.yml
       tags: ["cli"]
     
     - name: install gui packages
-      include_tasks: install/gui_packages.yaml
+      include_tasks: install/gui_packages.yml
       tags: ["gui"]
 
 

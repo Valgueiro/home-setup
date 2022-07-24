@@ -16,13 +16,6 @@
         path: "{{ download_path }}"
         state: absent
 
-- name: install visual based apps
-  become: true
-  become_user: root
-  apt:
-    update_cache: yes
-    pkg:
-        - code
 #            - wine
 #
 #    - name: install lightshot

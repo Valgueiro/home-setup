@@ -10,7 +10,7 @@
         - wget
         - gpg
         - apt-transport-https
-    
+
 - name: setup git global config
   shell: "{{ item }}"
   with_items:
