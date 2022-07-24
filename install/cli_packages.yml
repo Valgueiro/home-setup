@@ -15,4 +15,4 @@
   shell: "{{ item }}"
   with_items:
     - git config --global user.email "mateusvalgueiro@gmail.com"
-    - git config --global user.email "Mateus Valgueiro"
+    - git config --global user.name "Mateus Valgueiro"

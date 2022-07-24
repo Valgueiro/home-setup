@@ -9,6 +9,11 @@ The idea of this repo is to be able to replicate my coding setup environment at 
 $ sudo apt install ansible
 ```
 
+2. Install ansible-galaxy reqs
+```
+$ make install
+```
+
 And you are good to go
 ## Install packages:
 ```sh
