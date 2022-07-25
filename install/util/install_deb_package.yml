@@ -1,0 +1,19 @@
+- debug:  
+    var: item
+- name: install deb package
+  vars:
+    download_path: /tmp/app.deb
+  block:
+    - name: get deb package
+      get_url:
+        url: "{{ item }}"
+        dest: "{{ download_path }}"
+
+    - name: install deb
+      become: true
+      shell: "sudo dpkg -i {{ download_path }}"
+    
+    - name: Remove file
+      file:
+        path: "{{ download_path }}"
+        state: absent

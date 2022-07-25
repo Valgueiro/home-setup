@@ -1,8 +1,16 @@
 .PHONY: install
 
+VARS= -vv -e '@passwords.yml' --vault-password-file=vault_pass.txt ${CUSTOM_VARS}
+SETUP=ansible-playbook ${VARS} setup.yml
 install:
 	ansible-galaxy install -r roles/requirements.yml
 
 setup:
-	ansible-playbook setup.yml -e '@passwords.yml' \
-						--vault-password-file=vault_pass.txt
+	${SETUP}
+
+setup-gui:
+	${SETUP} --skip-tags "cli,zsh"
+
+setup-cli:
+	${SETUP} --skip-tags "gui,zsh"
+

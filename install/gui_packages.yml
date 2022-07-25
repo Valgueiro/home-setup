@@ -1,20 +1,9 @@
-- name: install vscode
-  vars:
-    download_path: /tmp/code.deb
-  block:
-    - name: get deb package
-      get_url:
-        url: https://update.code.visualstudio.com/latest/linux-deb-x64/stable
-        dest: "{{ download_path }}"
+- name: install debian packages
+  include_tasks: util/install_deb_package.yml
+  with_items:
+    - https://update.code.visualstudio.com/latest/linux-deb-x64/stable # VsCODE
+    - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb # Chrome
 
-    - name: install deb
-      become: true
-      shell: "sudo dpkg -i {{ download_path }}"
-    
-    - name: Remove file
-      file:
-        path: "{{ download_path }}"
-        state: absent
 
 #            - wine
 #

@@ -8,6 +8,7 @@
       settings: ""
     omz_install_zsh: true
     omz_zshrc_create: true
+    omz_zshrc_backup: false
     omz_plugins:
       - "git"
       - "zsh-z"
