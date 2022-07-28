@@ -35,6 +35,10 @@
         - blt-dev 
         - libgdbm-dev 
         - aria2
+        - ca-certificates
+        - curl
+        - gnupg
+        - lsb-release
 
 - name: setup git global config
   shell: "{{ item }}"
@@ -51,27 +55,27 @@
     name: yarn
     global: yes
 
-# [WIP] not working
-# - name: install pyenv
-#   ignore_errors: yes
+# - name: install docker
 #   block:
-#     - name: install
-#       shell: curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+#     - name: 
 
-#     - name: add pyenv to zshrc
-#       lineinfile:
-#         path: /home/mvalgueiro/.zshrc
-#         line: "{{ item }}"
-#         state: present
-#         backup: yes
-#       with_items:
-#         - 'export PYTHON_BUILD_ARIA2_OPTS="-x 10 -k 1M"'
-#         - 'export PATH="~/.pyenv/bin:$PATH"'
-#         - 'eval "$(pyenv init --path)"'
-#         - 'eval "$(pyenv init -)"'
-#         - 'eval "$(pyenv virtualenv-init -)"'
+- name: install pyenv
+  ignore_errors: yes
+  block:
+    - name: install
+      shell: curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | zsh
 
-#     - name: install python 3.10
-#       shell: pyenv install 3.10
+    - name: add pyenv to zshrc
+      lineinfile:
+        path: /home/mvalgueiro/.zshrc
+        line: "{{ item }}"
+        state: present
+        backup: yes
+      with_items:
+        - export PYENV_ROOT="$HOME/.pyenv"
+        - command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+        - eval "$(pyenv init -)"
+        - eval "$(pyenv init --path)"
+
 
 
