@@ -39,6 +39,9 @@
         - curl
         - gnupg
         - lsb-release
+        - mysql-client
+        - mysql-server
+        - libmysqlclient-dev
 
 - name: setup git global config
   shell: "{{ item }}"

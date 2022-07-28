@@ -21,3 +21,7 @@ $ ansible-playbook setup.yaml
 ```
 
 PS: your vault pass is on bitwarden
+
+
+PLEASE INSTALL: https://github.com/rbreaves/kinto
+(Just git clone and run setup.py)
